@@ -88,7 +88,10 @@ Zomato needs to understand:
 
 > The ER diagram below shows the relationships between all 5 core tables in the `zomato_project` database.
 
-![ER Diagram](img/ER_digram.png)
+<img width="713" height="353" alt="ER digram" src="https://github.com/user-attachments/assets/4979fda6-79ea-462c-9f1f-ffffa6532461" />
+
+" alt="Alt Text" width="500">
+
 
 **Relationships:**
 
