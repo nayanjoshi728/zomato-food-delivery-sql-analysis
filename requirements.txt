@@ -1,0 +1,397 @@
+# ==================================================================================
+# ZOMATO ANALYTICS PROJECT - REQUIREMENTS & SETUP
+# ==================================================================================
+# This file contains all requirements, dependencies, and setup instructions
+# for the Zomato Analytics project
+# ==================================================================================
+
+# ==================================================================================
+# DATABASE REQUIREMENTS
+# ==================================================================================
+
+MySQL Server Version: 8.0 or higher
+MySQL Workbench: Latest version (or any MySQL IDE like DBeaver)
+Database Engine: InnoDB
+Character Set: utf8mb4
+Collation: utf8mb4_unicode_ci
+
+
+# ==================================================================================
+# SYSTEM REQUIREMENTS
+# ==================================================================================
+
+Operating System: Windows 10/11, macOS 10.14+, or Linux (Ubuntu 18.04+)
+RAM: Minimum 4GB (Recommended 8GB)
+Storage: Minimum 500MB free space
+Processor: Intel Core i5 or equivalent
+
+
+# ==================================================================================
+# SOFTWARE TOOLS & TOOLS
+# ==================================================================================
+
+## Database Management
+- MySQL Community Server 8.0+ (https://dev.mysql.com/downloads/mysql/)
+- MySQL Workbench 8.0+ (https://dev.mysql.com/downloads/workbench/)
+- OR Alternative IDE: DBeaver Community Edition (https://dbeaver.io/)
+- OR Command Line: MySQL CLI
+
+## Version Control (Optional but Recommended)
+- Git 2.30+ (https://git-scm.com/downloads)
+- GitHub account for repository hosting (https://github.com)
+
+## Documentation & Visualization
+- Microsoft Word (for .docx documentation)
+- Excel (for exporting query results)
+- Visual Studio Code (for editing .md and .sql files)
+
+## Optional BI Tools (for future enhancements)
+- Tableau Public/Desktop
+- Power BI
+- Looker
+- Apache Superset
+
+
+# ==================================================================================
+# DATABASE TABLES REQUIRED
+# ==================================================================================
+
+1. **customers** table
+   Columns: customer_id (PK), customer_name, email, phone, city
+   Records: 772
+   
+2. **restaurants** table
+   Columns: restaurant_id (PK), restaurant_name, city, rating, cuisine_type
+   Records: 30
+   
+3. **orders** table
+   Columns: order_id (PK), customer_id (FK), restaurant_id (FK), order_item, 
+            total_amount, order_date, order_time
+   Records: 7,100
+   
+4. **deliveries** table
+   Columns: delivery_id (PK), order_id (FK), rider_id (FK), delivery_time, 
+            delivery_status, delivery_date
+   Records: 5,693
+   
+5. **riders** table
+   Columns: rider_id (PK), rider_name, phone, rating, city, vehicle_type
+   Records: 50
+
+
+# ==================================================================================
+# PROJECT SETUP STEPS
+# ==================================================================================
+
+## Step 1: Install MySQL
+- Download MySQL Community Server 8.0+
+- Install with default settings
+- Remember your root password
+
+## Step 2: Create Database
+```sql
+CREATE DATABASE zomato_project;
+USE zomato_project;
+```
+
+## Step 3: Create Tables
+- Execute: 01_database_schema.sql
+- This creates all 5 tables with proper relationships
+
+## Step 4: Import Sample Data
+- Execute: 02_sample_data.sql
+- This populates all tables with 8,000+ sample records
+
+## Step 5: Run Analytical Queries
+- Execute: questions.sql
+- Or run individual queries from 03_queries.sql
+
+## Step 6: Verify Installation
+```sql
+SELECT COUNT(*) FROM customers;        -- Should return 772
+SELECT COUNT(*) FROM restaurants;      -- Should return 30
+SELECT COUNT(*) FROM orders;           -- Should return 7,100
+SELECT COUNT(*) FROM deliveries;       -- Should return 5,693
+SELECT COUNT(*) FROM riders;           -- Should return 50
+```
+
+
+# ==================================================================================
+# CONNECTIVITY REQUIREMENTS
+# ==================================================================================
+
+## MySQL Connection Details
+- Host: localhost (or 127.0.0.1)
+- Port: 3306 (default)
+- Username: root
+- Password: [Your MySQL root password]
+- Database: zomato_project
+
+
+## Connection String Examples
+
+### MySQL Workbench
+Host: 127.0.0.1
+Port: 3306
+Username: root
+Password: [your password]
+Default Schema: zomato_project
+
+### Command Line
+mysql -u root -p zomato_project
+
+### DBeaver
+Driver: MySQL 8.0+
+Server: localhost:3306
+Database: zomato_project
+Username: root
+Password: [your password]
+
+
+# ==================================================================================
+# PROJECT FILES STRUCTURE
+# ==================================================================================
+
+zomato-analytics/
+├── README.md                           # Main project documentation
+├── requirements.txt                    # This file (setup requirements)
+├── questions.sql                       # All 20 analytical queries
+├── Zomato_Analytics_README.docx       # Word document version
+│
+├── sql-scripts/
+│   ├── 01_database_schema.sql         # Table creation & relationships
+│   ├── 02_sample_data.sql             # Sample data insertion
+│   └── 03_queries.sql                 # All 20 queries
+│
+└── images/                             # Query results & visualizations
+    ├── Q1_top_dishes.png
+    ├── Q2_time_slots.png
+    ├── Q3_aov_analysis.png
+    ├── Q4_high_value_customers.png
+    ├── Q5_undelivered_orders.png
+    ├── Q6_restaurant_revenue.png
+    ├── Q7_popular_dishes_by_city.png
+    ├── Q8_churn_analysis.png
+    ├── Q9_cancellation_rates.png
+    ├── Q10_delivery_time.png
+    ├── Q11_growth_ratio.png
+    ├── Q12_customer_segmentation.png
+    ├── Q13_rider_earnings.png
+    ├── Q14_rider_ratings.png
+    ├── Q15_day_frequency.png
+    ├── Q16_clv_analysis.png
+    ├── Q17_sales_trends.png
+    ├── Q18_rider_efficiency.png
+    ├── Q19_seasonal_demand.png
+    └── Q20_city_ranking.png
+
+
+# ==================================================================================
+# DATA DEFINITION LANGUAGE (DDL) REQUIREMENTS
+# ==================================================================================
+
+## Indexes (Recommended for Performance)
+CREATE INDEX idx_order_customer ON orders(customer_id);
+CREATE INDEX idx_order_restaurant ON orders(restaurant_id);
+CREATE INDEX idx_order_date ON orders(order_date);
+CREATE INDEX idx_delivery_rider ON deliveries(rider_id);
+CREATE INDEX idx_delivery_status ON deliveries(delivery_status);
+
+## Foreign Key Constraints (Data Integrity)
+ALTER TABLE orders ADD CONSTRAINT fk_order_customer 
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id);
+    
+ALTER TABLE orders ADD CONSTRAINT fk_order_restaurant 
+    FOREIGN KEY (restaurant_id) REFERENCES restaurants(restaurant_id);
+    
+ALTER TABLE deliveries ADD CONSTRAINT fk_delivery_order 
+    FOREIGN KEY (order_id) REFERENCES orders(order_id);
+    
+ALTER TABLE deliveries ADD CONSTRAINT fk_delivery_rider 
+    FOREIGN KEY (rider_id) REFERENCES riders(rider_id);
+
+
+# ==================================================================================
+# EXPECTED OUTPUT & VALIDATION
+# ==================================================================================
+
+## After running all queries, you should have:
+- 20 analytical result sets
+- Each query returning relevant insights
+- No SQL errors (all syntax valid)
+- Proper data types and date formats
+- Rounded monetary values to 2 decimals
+
+## Common Query Outputs:
+- Q1: Top 5 dishes with counts
+- Q2: 12 time slots with order frequency
+- Q3: Customer names with AOV values
+- Q4: High-value customer segments
+- Q5: Restaurant names with undelivered order counts
+- Q6: Top restaurant per city with revenue
+- Q7: Most popular dish per city
+- Q8: List of churned customers
+- Q9: Cancellation rate comparison year-over-year
+- Q10: Delivery times by rider
+- Q11: Month-over-month growth percentages
+- Q12: Gold/Silver customer segments with counts
+- Q13: Rider earnings by month
+- Q14: Star rating distribution by rider
+- Q15: Peak day per restaurant
+- Q16: Customer lifetime value rankings
+- Q17: Monthly sales trends
+- Q18: Rider efficiency rankings
+- Q19: Seasonal demand by item
+- Q20: City revenue rankings
+
+
+# ==================================================================================
+# TROUBLESHOOTING
+# ==================================================================================
+
+## Issue: "Access Denied for user 'root'@'localhost'"
+Solution: Verify MySQL is running, check password, reset if needed
+
+## Issue: "Database does not exist"
+Solution: Run CREATE DATABASE zomato_project; first
+
+## Issue: "Table already exists"
+Solution: Run DROP TABLE IF EXISTS [table_name]; first
+
+## Issue: "Foreign key constraint fails"
+Solution: Ensure parent tables are created before child tables
+
+## Issue: Query returns empty results
+Solution: Verify sample data was imported correctly
+
+## Issue: TIMESTAMPDIFF returns NULL or 0
+Solution: Check delivery_time and order_time formats are DATETIME
+
+
+# ==================================================================================
+# PERFORMANCE OPTIMIZATION TIPS
+# ==================================================================================
+
+1. Create indexes on frequently queried columns (customer_id, restaurant_id, order_date)
+2. Use EXPLAIN to analyze query performance
+3. Partition large tables by date if dataset grows beyond 1GB
+4. Use LIMIT clause during development to reduce result set size
+5. Archive old data (pre-2024) to separate tables if needed
+
+
+# ==================================================================================
+# RECOMMENDED EXTENSIONS & ENHANCEMENTS
+# ==================================================================================
+
+1. **Predictive Analysis** - Add machine learning models for:
+   - Demand forecasting
+   - Customer churn prediction
+   - Optimal pricing models
+
+2. **Real-Time Dashboard** - Integrate with:
+   - Tableau/Power BI for live monitoring
+   - Grafana for metrics visualization
+
+3. **ETL Pipeline** - Implement:
+   - Apache Airflow for scheduled data updates
+   - Python scripts for data cleaning
+
+4. **API Layer** - Create:
+   - REST API using Flask/FastAPI
+   - GraphQL endpoints for data access
+
+5. **Advanced Analytics**:
+   - Cohort analysis
+   - RFM segmentation
+   - Geographic heat mapping
+
+
+# ==================================================================================
+# LEARNING RESOURCES
+# ==================================================================================
+
+## SQL Mastery
+- https://www.w3schools.com/sql/
+- https://www.geeksforgeeks.org/sql-tutorial/
+- https://mode.com/sql-tutorial/
+
+## Window Functions
+- https://www.geeksforgeeks.org/window-functions-in-sql/
+- https://www.postgresql.org/docs/current/functions-window.html
+
+## MySQL Specific
+- https://dev.mysql.com/doc/refman/8.0/en/
+- https://www.mysql.com/
+
+## Data Analysis & BI
+- https://www.kaggle.com/datasets
+- https://github.com/topics/eda
+
+## Interview Preparation
+- https://www.leetcode.com/problems (LeetCode Database)
+- SQL practice platforms
+
+
+# ==================================================================================
+# SUPPORT & DOCUMENTATION
+# ==================================================================================
+
+## Project Documentation Files:
+1. README.md - Comprehensive project overview
+2. Zomato_Analytics_README.docx - Detailed Word documentation
+3. questions.sql - Commented SQL queries
+4. This file (requirements.txt) - Setup guide
+
+## Getting Help:
+- Check comments in SQL queries
+- Review README.md for query explanations
+- Test individual queries one by one
+- Verify data exists in tables before running
+
+## Contact:
+- Author: [Your Name]
+- Email: [Your Email]
+- GitHub: [Your GitHub Profile]
+
+
+# ==================================================================================
+# VERSION INFORMATION
+# ==================================================================================
+
+Project Version: 1.0
+Last Updated: May 2025
+MySQL Version: 8.0+
+Python Version: Not required (SQL only)
+Status: Complete & Production-Ready
+
+
+# ==================================================================================
+# LICENSE & USAGE
+# ==================================================================================
+
+MIT License - Feel free to use, modify, and share with attribution
+All data is anonymized and sample-based for educational purposes
+No proprietary or confidential information included
+
+
+# ==================================================================================
+# QUICK START CHECKLIST
+# ==================================================================================
+
+☐ Install MySQL Server 8.0+
+☐ Install MySQL Workbench (or preferred IDE)
+☐ Create zomato_project database
+☐ Execute 01_database_schema.sql
+☐ Execute 02_sample_data.sql
+☐ Verify record counts match requirements
+☐ Execute 03_queries.sql
+☐ Review and understand each query output
+☐ Customize queries for your use case
+☐ Create visualizations from results
+☐ Document findings and insights
+☐ Share project on GitHub
+☐ Update portfolio with project link
+
+# ==================================================================================
+# END OF REQUIREMENTS FILE
+# ==================================================================================

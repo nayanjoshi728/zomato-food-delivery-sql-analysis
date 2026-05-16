@@ -1,0 +1,150 @@
+# ZOMATO ANALYTICS - 20 QUESTIONS LIST
+
+## SECTION 1: CUSTOMER INSIGHT QUESTIONS
+
+Q1.  TOP 5 MOST FREQUENTLY ORDERED DISHES BY A SPECIFIC CUSTOMER
+     → Find top 5 favorite dishes of a customer in the last 1 year
+     → Helps personalize recommendations and understand preferences
+
+Q2.  POPULAR TIME SLOTS
+     → Identify time slots with most orders (2-hour intervals)
+     → Optimize marketing campaigns and rider scheduling
+
+Q3.  ORDER VALUE ANALYSIS
+     → Find Average Order Value (AOV) for customers with 25+ orders
+     → Identify high-frequency customers and spending patterns
+
+Q4.  HIGH-VALUE CUSTOMERS
+     → List customers who spent more than ₹10,000 total
+     → VIP identification for loyalty programs
+
+Q5.  ORDERS WITHOUT DELIVERY
+     → Find orders placed but never delivered
+     → Quality control and customer service
+
+Q6.  RESTAURANT REVENUE RANKING
+     → Rank restaurants by revenue, showing top per city (last year)
+     → Identify star performers for expansion decisions
+
+Q7.  MOST POPULAR DISH BY CITY
+     → Identify most ordered dish in each city
+     → Guide regional menu customization
+
+Q8.  CUSTOMER CHURN ANALYSIS
+     → Find customers who ordered in 2024 but not in 2025
+     → Retention marketing strategy
+
+---
+
+## SECTION 2: OPERATIONAL EFFICIENCY QUESTIONS
+
+Q9.  CANCELLATION RATE COMPARISON (2024 vs 2025)
+     → Compare order cancellation rates by restaurant year-over-year
+     → Monitor operational issues
+
+Q10. RIDER AVERAGE DELIVERY TIME
+     → Calculate average delivery time per rider (overnight-adjusted)
+     → Performance evaluation metrics
+
+Q11. MONTHLY RESTAURANT GROWTH RATIO
+     → Calculate month-over-month growth for each restaurant
+     → Track business momentum
+
+Q12. CUSTOMER SEGMENTATION - GOLD VS SILVER
+     → Classify customers as Gold/Silver based on order value vs AOV
+     → Enable targeted marketing
+
+Q13. RIDER MONTHLY EARNINGS
+     → Calculate rider earnings (8% commission of order value)
+     → Performance-based compensation tracking
+
+Q14. RIDER RATINGS ANALYSIS
+     → Assign star ratings based on delivery time
+     → (<15min=5★, 15-20min=4★, >20min=3★)
+     → Quality incentives
+
+Q15. ORDER FREQUENCY BY DAY OF WEEK
+     → Analyze orders per day and identify peak day per restaurant
+     → Staff scheduling optimization
+
+Q16. CUSTOMER LIFETIME VALUE (CLV)
+     → Calculate total revenue per customer across all orders
+     → Customer worth analysis for marketing budgets
+
+---
+
+## SECTION 3: REVENUE & GROWTH QUESTIONS
+
+Q17. MONTHLY SALES TRENDS
+     → Compare each month's sales to previous month
+     → Identify seasonal patterns and growth
+
+Q18. RIDER EFFICIENCY ANALYSIS
+     → Evaluate rider efficiency and rank top/bottom performers
+     → Performance management and QA
+
+Q19. ORDER ITEM POPULARITY - SEASONAL DEMAND
+     → Track item popularity and identify seasonal spikes
+     → Inventory planning
+
+Q20. CITY REVENUE RANKING
+     → Rank cities by total revenue (current year)
+     → Geographic expansion strategy
+
+---
+
+## QUICK REFERENCE - BY BUSINESS NEED
+
+### Customer Focus:
+Q1, Q3, Q4, Q8, Q16
+
+### Operations Focus:
+Q5, Q10, Q13, Q14, Q15, Q18
+
+### Revenue & Growth Focus:
+Q6, Q11, Q17, Q20
+
+### Market Analysis:
+Q2, Q7, Q12, Q19
+
+---
+
+## SQL TECHNIQUES COVERED
+
+### Window Functions:
+Q1, Q6, Q7, Q11, Q14, Q15, Q18
+
+### Aggregation:
+Q2, Q3, Q4, Q13, Q17
+
+### Joins:
+Q5, Q6, Q7, Q10, Q14, Q16
+
+### Subqueries:
+Q8, Q12
+
+### CTEs (Common Table Expressions):
+Q6, Q9, Q11, Q18
+
+### Date/Time Functions:
+Q1, Q2, Q10, Q11, Q13, Q14, Q17, Q19
+
+### CASE Statements:
+Q2, Q12, Q14, Q18, Q19
+
+---
+
+## DIFFICULTY LEVEL
+
+Easy:     Q2, Q3, Q4, Q13, Q16, Q19
+Medium:   Q1, Q5, Q6, Q7, Q8, Q10, Q12, Q14, Q15, Q17, Q20
+Hard:     Q9, Q11, Q18
+
+---
+
+**Total Questions:** 20
+**Sections:** 3 (Customer, Operations, Revenue)
+**Database Records:** 7,100+ orders, 772 customers, 5,693 deliveries
+**Complexity Range:** Beginner to Advanced
+**Interview Value:** Excellent for data analyst roles
+
