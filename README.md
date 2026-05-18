@@ -2,7 +2,6 @@
 
 ![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-blue?logo=mysql)
 ![SQL](https://img.shields.io/badge/SQL-Advanced-orange?logo=database)
-![Power BI](https://img.shields.io/badge/PowerBI-Dashboard-yellow?logo=powerbi)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
@@ -128,7 +127,6 @@ zomato-analytics/
 | **MySQL 8.0+** | Relational Database Management System |
 | **SQL** | Complex queries (Window Functions, CTEs, Joins) |
 | **MySQL Workbench** | SQL IDE and query execution |
-| **Power BI** | Interactive dashboard and data visualization |
 | **Git** | Version control for queries and scripts |
 
 ---
